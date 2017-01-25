@@ -1,0 +1,51 @@
+# Project: Project Silica
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe -D__DEBUG__
+CC   = gcc.exe -D__DEBUG__
+WINDRES = windres.exe
+RES  = ProjectSilica_private.res
+OBJ  = gxy.o color.o silica.o screenInitz.o screenMenuGet.o menuGet.o sfx.o $(RES)
+LINKOBJ  = gxy.o color.o silica.o screenInitz.o screenMenuGet.o menuGet.o sfx.o $(RES)
+LIBS =  -L"D:/Dev-Cpp/lib"  -g3 
+INCS =  -I"D:/Dev-Cpp/include" 
+CXXINCS =  -I"D:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"D:/Dev-Cpp/include/c++/3.4.2/backward"  -I"D:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"D:/Dev-Cpp/include/c++/3.4.2"  -I"D:/Dev-Cpp/include" 
+BIN  = ProjectSilica.exe
+CXXFLAGS = $(CXXINCS)   -g3
+CFLAGS = $(INCS)   -g3
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before ProjectSilica.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o "ProjectSilica.exe" $(LIBS)
+
+gxy.o: gxy.c
+	$(CC) -c gxy.c -o gxy.o $(CFLAGS)
+
+color.o: color.c
+	$(CC) -c color.c -o color.o $(CFLAGS)
+
+silica.o: silica.c
+	$(CC) -c silica.c -o silica.o $(CFLAGS)
+
+screenInitz.o: screenInitz.c
+	$(CC) -c screenInitz.c -o screenInitz.o $(CFLAGS)
+
+screenMenuGet.o: screenMenuGet.c
+	$(CC) -c screenMenuGet.c -o screenMenuGet.o $(CFLAGS)
+
+menuGet.o: menuGet.c
+	$(CC) -c menuGet.c -o menuGet.o $(CFLAGS)
+
+sfx.o: sfx.c
+	$(CC) -c sfx.c -o sfx.o $(CFLAGS)
+
+ProjectSilica_private.res: ProjectSilica_private.rc 
+	$(WINDRES) -i ProjectSilica_private.rc --input-format=rc -o ProjectSilica_private.res -O coff 
